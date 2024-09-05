@@ -1,4 +1,3 @@
-import numpy as np
 def multiplicar_matrices(A, B):
     filas_A = len(A)
     columnas_A = len(A[0])
