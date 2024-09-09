@@ -1,25 +1,20 @@
 import numpy as np
 
-def pad_matrix(matrix):
-    size = matrix.shape[0]
-    new_size = 1
-    while new_size < size:
-        new_size *= 2
-    if new_size > size:
-        padded_matrix = np.zeros((new_size, new_size))
-        padded_matrix[:size, :size] = matrix
-        return padded_matrix
-    return matrix
-
 def split(source):
+    # Descripción: Genera 4 sub-matrices de la matriz de entrada.
     mid = len(source) // 2
+
     A = source[:mid, :mid]
     B = source[:mid, mid:]
     C = source[mid:, :mid]
     D = source[mid:, mid:]
+
     return A, B, C, D
 
 def strassen(X, Y):
+    # Descripción: Algoritmo de multiplicación de matrices basado en la metodología dividir y vencer
+    # que multiplica dos matrices cuadradas mediante dividir las matrices en sub-matrices y llamadas
+    # recursivas.
     if X.shape[0] == 1:
         return X * Y
     

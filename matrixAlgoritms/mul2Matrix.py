@@ -1,4 +1,5 @@
 def transpose_matrix(matrix):
+    # Descripción: Genera la matriz traspuesta de una matriz de entrada.
     n = len(matrix)
     m = len(matrix[0])
     transposed = [[0] * n for _ in range(m)]
@@ -9,6 +10,7 @@ def transpose_matrix(matrix):
     return transposed
 
 def multiplicarMatrices(A, B):
+    # Descripción: Algoritmo que multiplica dos matrices entre si.
     B_transposed = transpose_matrix(B)
 
     n = len(A)
