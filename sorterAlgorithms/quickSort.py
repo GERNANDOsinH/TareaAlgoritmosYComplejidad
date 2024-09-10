@@ -1,3 +1,5 @@
+import numpy as np
+
 def quickSort(arr):
     # Descripción: Algoritmo de ordenamiento QuickSort que sigue la enfoque de diseño dividir y vencer
     # que necesita(en esta caso) memoria extra.
@@ -9,15 +11,17 @@ def quickSort(arr):
     p = arr[0]
 
     # Se inicializan los arreglos lower(menor que) y greater(mayor que).
-    lower = []
-    greater = []
+    lower = np.array([])
+    greater = np.array([])
 
     # Se guardan los elementos menores que el pivote en la lista lower, y los demas en greater.
     for i in range(1,len(arr)):
         if arr[i] < p:
-            lower.append(arr[i])
+            lower = np.concatenate((lower, np.array([arr[i]])))
         else:
-            greater.append(arr[i])
+            greater = np.concatenate((greater, np.array([arr[i]])))
 
     # Llamada recursiva.
-    return (quickSort(lower) + [p] + quickSort(greater))
+    ret = np.concatenate((quickSort(lower), np.array([p])))
+    ret = np.concatenate((ret, quickSort(greater)))
+    return ret

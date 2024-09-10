@@ -1,16 +1,26 @@
-import random
-import struct
+import numpy as np
 
 
-with open('testSorter.bin', 'wb') as testSorter:
-    # Caso constante, los elementos son iguales.
-    for i in range(0,100):
-        testSorter.write(struct.pack('i', 0))
+# Caso ascendente, los elementos estan ordenados de manera ascendente.
+arreglos = []
+array = np.arange(1,101)
+arreglos.append(array)
 
-    # Caso ascendente, los elementos estan ordenados de manera ascendente.
-    for i in range(0,100):
-        testSorter.write(struct.pack('i', (i + 1)))
-    
-    # Caso aleatorio, los elementos estan generados de manera aleatoria.
-    for i in range(0,100):
-        testSorter.write(struct.pack('i', random.randint(0,100)))
+# Caso aleatorio, los elementos estan generados de manera aleatoria.
+array = np.random.randint(0,101,100)
+arreglos.append(array)
+
+with open('testSorterStatic.bin', 'wb') as file:
+    for array in arreglos:
+        np.save(file, array)
+
+arreglos = []
+
+# Variación de tamaño de los arreglos
+for i in range(10):
+    array = np.random.randint(0,101,2**i)
+    arreglos.append(array)
+
+with open('testSorter.bin', 'wb') as file:
+    for array in arreglos:
+        np.save(file, array)

@@ -1,3 +1,5 @@
+import numpy as np
+
 def merge_sort(arr):
     # Descripción: Algoritmo de ordenamiento QuickSort que ordena un arreglo de entrada mediante llamadas recursivas.
     if len(arr) <= 1:
@@ -17,24 +19,24 @@ def merge_sort(arr):
 
 
 def merge(left, right):
-    # Descripción: Algoritmo que une dos arreglos de números.
-    sorted_list = []
+    # Descripción: Algoritmo que une dos arreglos de números usando numpy.
+    sorted_array = np.empty(0, dtype=left.dtype)  # Crear un arreglo vacío con el mismo tipo de dato que `left`
     i = j = 0
 
     # Ordenamiento mediante comparación de elementos.
     while i < len(left) and j < len(right):
         if left[i] < right[j]:
-            sorted_list.append(left[i])
+            sorted_array = np.append(sorted_array, left[i])
             i += 1
         else:
-            sorted_list.append(right[j])
+            sorted_array = np.append(sorted_array, right[j])
             j += 1
 
     while i < len(left):
-        sorted_list.append(left[i])
+        sorted_array = np.append(sorted_array, left[i])
         i += 1
     while j < len(right):
-        sorted_list.append(right[j])
+        sorted_array = np.append(sorted_array, right[j])
         j += 1
 
-    return sorted_list
+    return sorted_array
